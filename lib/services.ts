@@ -104,7 +104,10 @@ export const SERVICES: Service[] = [
       ],
     },
     target: "ホテル / オフィスビル / 商業施設 / マンション共用部",
-    photos: [{ src: "room-japanese.png", label: "特掃後の客室", badge: "AFTER" }],
+    photos: [
+      { src: "tokuso-bath-before.jpg", label: "ユニットバス床（特掃前）", badge: "BEFORE" },
+      { src: "tokuso-bath-after.jpg", label: "ユニットバス床（特掃後）", badge: "AFTER" },
+    ],
   },
   {
     slug: "gaiso",

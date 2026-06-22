@@ -30,7 +30,7 @@ export default function About() {
     <>
       <header className="page-hero with-photo">
         <div className="page-hero-bg">
-          <img src="/images/founder-bed.png" alt="代表の現場" />
+          <img src="/images/founder-onishi.jpg" alt="代表取締役 大西 悠佑" style={{ objectPosition: "center 28%" }} />
         </div>
         <div className="wrap page-hero-inner">
           <nav className="breadcrumb">

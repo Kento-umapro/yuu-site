@@ -17,7 +17,7 @@ const WORKS: { src: string; label: string; en: string; badge: string; href: stri
   { src: "work-aircon.jpg", label: "天井埋込型ファンの分解", en: "A/C Deep Clean", badge: "設備", href: "/services/setsubi" },
   { src: "work-duct-dirty.jpg", label: "排気ファン内部の油汚れ", en: "Kitchen Duct", badge: "設備", href: "/services/setsubi" },
   { src: "room-twin.png", label: "ツインルームの客室清掃", en: "Guest Room", badge: "清掃", href: "/services/kyakushitsu" },
-  { src: "room-japanese.png", label: "和モダンルームの特掃", en: "Special Cleaning", badge: "清掃", href: "/services/kannai" },
+  { src: "tokuso-bath-after.jpg", label: "ユニットバス床の特掃（施工後）", en: "Bathroom Special Cleaning", badge: "特掃", href: "/services/kannai" },
   { src: "svc-gaiso.png", label: "建物外装のメンテナンス", en: "Exterior Care", badge: "外装", href: "/services/gaiso" },
 ];
 
