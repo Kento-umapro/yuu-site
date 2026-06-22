@@ -17,6 +17,16 @@ export default function Home() {
     <>
       {/* HERO */}
       <header className="hero" id="top">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/hero-1.png"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
         <div className="hero-photo" />
         <div className="hero-floor" />
         <div className="hero-glow" />
@@ -24,17 +34,17 @@ export default function Home() {
         <div className="hero-inner">
           <div className="hero-eyebrow eyebrow reveal">TOTAL BUILDING CARE / SHIGA · KYOTO</div>
           <h1 className="hero-title">
-            <span className="mask-line"><span className="l1">客室から、屋上まで。</span></span>
+            <span className="mask-line"><span className="l1">ホテル清掃、客室から屋上まで。</span></span>
             <span className="mask-line"><span className="l2">建物まるごと、整える。</span></span>
           </h1>
           <p className="hero-lede reveal">
-            株式会社 悠（YOU）は、ホテル清掃を起点に、窓・カーペット・エアコン・庭木・設備・防水まで。建物まわりの
-            <strong style={{ color: "#fff" }}>11の専門業務</strong>を、一次受けでまるごと請け負う、滋賀発の総合ビルメンテナンス。
+            株式会社 悠（YOU）は、ホテルの全般清掃を軸に、館内・高所・設備・外構まで。
+            <strong style={{ color: "#fff" }}>確かな品質</strong>で、清掃会社さまの現場を支え、ホテルさまへ直接お届けする、滋賀発の総合ビルメンテナンス。
           </p>
           <div className="hero-meta reveal">
             <div className="hero-fact"><div className="k">AREA</div><div className="v">京都 / 大津 / 草津</div></div>
             <div className="hero-fact"><div className="k">SERVICE</div><div className="v">5分野 / 11業務</div></div>
-            <div className="hero-fact"><div className="k">CONTRACT</div><div className="v">一次受け 直接契約</div></div>
+            <div className="hero-fact"><div className="k">PARTNER</div><div className="v">清掃会社さま歓迎</div></div>
             <div className="hero-fact"><div className="k">QUOTE</div><div className="v">無料・即日対応</div></div>
           </div>
           <div className="hero-cta reveal">
@@ -101,7 +111,7 @@ export default function Home() {
             </div>
             <div>
               <p className="manifesto-body reveal">
-                十年、清掃とビルメンテナンスの現場に立ってきました。<br />会社員のままでは、出せない色がある。<br />
+                十年、ホテルの全般清掃の現場に立ってきました。<br />会社員のままでは、出せない色がある。<br />
                 <span className="lead">建物を使う人へ。その先のお客様へ。</span><br />整った空間を、まっすぐに届けたかった。
               </p>
               <div className="signature reveal">— 株式会社 悠 代表取締役<span className="name">大 西 悠 佑</span></div>
@@ -116,27 +126,27 @@ export default function Home() {
           <div className="section-head">
             <div className="section-num reveal">03 / 強み</div>
             <div>
-              <h2 className="section-title reveal">大手と比べて、かなり、安い。<br />その理由は、構造にあります。</h2>
+              <h2 className="section-title reveal">選ばれる理由は、<br /><em>価格ではなく、品質。</em></h2>
               <p className="section-lede reveal">
-                中間マージンを挟まない一次受け契約、十年のオペレーション経験、そして「決めた時間に、決めた状態で納める」という当たり前。悠の強みは、足し算ではなく、引き算からできています。
+                悠は、ホテルから清掃を請ける清掃会社さまの現場を、確かな品質で支える協力会社です。標準化された手順とインスペクション、十年の現場経験で、繁忙期や人手不足の戦力に。小規模ホテルさまへは直接、同じ品質でお応えします。
               </p>
             </div>
           </div>
           <div className="strengths-grid reveal-stagger">
             <div className="strength">
-              <div className="strength-num">— 001</div><div className="strength-jp">適 正 価 格</div>
-              <h3 className="strength-title"><span className="pop">一次受け</span>直接、段取り。</h3>
-              <p className="strength-body">二次・三次と受け渡されるたび、料金は積み上がります。悠は一次受けから現場までを自社で組み立てるため、無駄なマージンを削ぎ落とした価格でご提案できます。</p>
+              <div className="strength-num">— 001</div><div className="strength-jp">品 質 第 一</div>
+              <h3 className="strength-title"><span className="pop">品質</span>で、応える。</h3>
+              <p className="strength-body">客室タイプごとに標準化した手順と、清掃後のチェック体制（インスペクション）。担当者が変わっても仕上がりはブレません。ホテル基準の品質を、安定してお納めします。</p>
             </div>
             <div className="strength">
-              <div className="strength-num">— 002</div><div className="strength-jp">一 括 対 応</div>
-              <h3 className="strength-title"><span className="pop">全11業種</span>を、まとめて。</h3>
-              <p className="strength-body">清掃・高所作業・設備・剪定・防水まで自社で対応。業種ごとに別の会社を手配する手間と、窓口の煩雑さをなくし、建物の困りごとを一社に集約できます。</p>
+              <div className="strength-num">— 002</div><div className="strength-jp">協 力 会 社 歓 迎</div>
+              <h3 className="strength-title"><span className="pop">清掃会社</span>さまの戦力に。</h3>
+              <p className="strength-body">ホテルから清掃を請ける清掃会社さまの、繁忙期・人手不足・品質課題を、確かな現場力で支えます。御社の看板で、安心してお任せいただける仕上がりをお約束します。</p>
             </div>
             <div className="strength">
               <div className="strength-num">— 003</div><div className="strength-jp">十 年 実 績</div>
               <h3 className="strength-title"><span className="pop">10年</span>の現場経験。</h3>
-              <p className="strength-body">代表自らが清掃とビルメンテナンスの現場で十年。トラブル時の判断と、繁忙期の段取りは、現場で磨いた感覚です。だから、品質も納期もブレません。</p>
+              <p className="strength-body">代表自らホテルの全般清掃の現場で十年。手順も段取りもトラブル対応も、現場で磨いた感覚です。だから、即戦力としてすぐに現場へ入れます。</p>
             </div>
           </div>
         </div>
@@ -175,43 +185,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section className="pricing" id="pricing">
-        <div className="wrap">
-          <div className="section-head">
-            <div className="section-num reveal">05 / 価格の理由</div>
-            <div><h2 className="section-title reveal">なぜ、安く<br />提供できるのか。</h2><p className="section-lede reveal">業界の慣習である多重請負。悠は、その構造そのものを変えています。</p></div>
-          </div>
-          <div className="pricing-flow">
-            <div className="flow-card bad reveal">
-              <div className="flow-label">— 一般的な構造</div><h3 className="flow-title">多重請負</h3>
-              <div className="flow-chain">
-                <div className="flow-link"><span>発注者</span><span className="pct">100%</span></div><div className="flow-arrow">↓</div>
-                <div className="flow-link"><span>一次請け</span><span className="pct">−15%</span></div><div className="flow-arrow">↓</div>
-                <div className="flow-link"><span>二次請け</span><span className="pct">−10%</span></div><div className="flow-arrow">↓</div>
-                <div className="flow-link"><span>三次請け</span><span className="pct">−10%</span></div><div className="flow-arrow">↓</div>
-                <div className="flow-link"><span>現場（四次）</span><span className="pct">≒ 65%</span></div>
-              </div>
-              <p className="price-callout">中間に立つ会社が増えるほど、現場に渡る予算は減り、発注者の支払いは膨らみます。</p>
-            </div>
-            <div className="flow-card good reveal">
-              <div className="flow-label">— 悠 の 構 造</div><h3 className="flow-title">一次受け直接</h3>
-              <div className="flow-chain">
-                <div className="flow-link"><span>発注者</span><span className="pct">100%</span></div><div className="flow-arrow">↓</div>
-                <div className="flow-link"><span>株式会社 悠</span><span className="pct">直接</span></div><div className="flow-arrow">↓</div>
-                <div className="flow-link"><span>悠の現場スタッフ</span><span className="pct">≒ 95%</span></div>
-              </div>
-              <p className="price-callout">中間マージンを挟まないから、<strong>同じ品質を、より低価格で。</strong> 浮いた予算は、品質と人員に還元します。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* PROCESS */}
       <section className="process">
         <div className="wrap">
           <div className="section-head">
-            <div className="section-num reveal">06 / 流れ</div>
+            <div className="section-num reveal">05 / 流れ</div>
             <div><h2 className="section-title reveal">お問い合わせから、<br />初回作業まで。</h2><p className="section-lede reveal">最短で、お問い合わせから一週間で初回稼働が可能です。</p></div>
           </div>
           <div className="process-grid reveal-stagger">
@@ -227,14 +205,18 @@ export default function Home() {
       <section className="area" id="area">
         <div className="wrap">
           <div className="section-head">
-            <div className="section-num reveal">07 / 対応エリア</div>
+            <div className="section-num reveal">06 / 対応エリア</div>
             <div><h2 className="section-title reveal">京都・大津・草津、<br /><em>毎朝、走れる距離。</em></h2><p className="section-lede reveal">本社を滋賀県大津市に置き、車で30分圏の建物を中心に対応。エリア内であれば、当日の急なトラブルにも代表が直接駆けつけます。</p></div>
           </div>
           <div className="area-grid">
             <div className="area-map reveal">
-              <div className="area-pin" style={{ left: "32%", top: "46%" }}><div className="dot" /><div className="lbl">京都市</div></div>
-              <div className="area-pin" style={{ left: "62%", top: "58%" }}><div className="dot" /><div className="lbl">大津市 / 本社</div></div>
-              <div className="area-pin" style={{ left: "76%", top: "72%" }}><div className="dot" /><div className="lbl">草津市</div></div>
+              <iframe
+                className="area-map-frame"
+                title="対応エリア（京都市・大津市・草津市）"
+                src="https://www.google.com/maps?q=%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%A4%A7%E6%B4%A5%E5%B8%82%E8%A1%A3%E5%B7%9D1%E4%B8%81%E7%9B%AE40-23&z=10&hl=ja&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
             <div className="reveal-stagger">
               <div className="area-row"><div className="ix">— 001</div><div className="city">京 都 市<small>KYOTO CITY</small></div><div className="status">対応中</div></div>
@@ -268,7 +250,7 @@ export default function Home() {
       <section className="contact" id="contact">
         <div className="wrap">
           <div className="section-head">
-            <div className="section-num reveal">08 / お問い合わせ</div>
+            <div className="section-num reveal">07 / お問い合わせ</div>
             <div><h2 className="section-title reveal">無料見積もり<br /><em>依頼フォーム。</em></h2><p className="section-lede reveal">下記フォームより、必要事項をご記入ください。原則 24時間以内 にご返信いたします。</p></div>
           </div>
           <div className="contact-grid">
