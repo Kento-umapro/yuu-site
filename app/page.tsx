@@ -17,6 +17,7 @@ export default function Home() {
     <>
       {/* HERO */}
       <header className="hero" id="top">
+        <div className="hero-photo" />
         <div className="hero-floor" />
         <div className="hero-glow" />
         <div className="hero-glyph3d" id="heroGlyph">悠</div>
@@ -28,11 +29,11 @@ export default function Home() {
           </h1>
           <p className="hero-lede reveal">
             株式会社 悠（YOU）は、ホテル清掃を起点に、窓・カーペット・エアコン・庭木・設備・防水まで。建物まわりの
-            <strong style={{ color: "#fff" }}>全11業種</strong>を一次受けで請け負う、滋賀発の総合ビルメンテナンス。
+            <strong style={{ color: "#fff" }}>11の専門業務</strong>を、一次受けでまるごと請け負う、滋賀発の総合ビルメンテナンス。
           </p>
           <div className="hero-meta reveal">
             <div className="hero-fact"><div className="k">AREA</div><div className="v">京都 / 大津 / 草津</div></div>
-            <div className="hero-fact"><div className="k">SERVICE</div><div className="v">全 11 業種 対応</div></div>
+            <div className="hero-fact"><div className="k">SERVICE</div><div className="v">5分野 / 11業務</div></div>
             <div className="hero-fact"><div className="k">CONTRACT</div><div className="v">一次受け 直接契約</div></div>
             <div className="hero-fact"><div className="k">QUOTE</div><div className="v">無料・即日対応</div></div>
           </div>
@@ -65,7 +66,7 @@ export default function Home() {
             <div>
               <h2 className="section-title reveal">建物の困りごとは、<br /><em>ぜんぶ、悠へ。</em></h2>
               <p className="section-lede reveal">
-                客室清掃から高所のロープ作業、エアコン・ダクトの分解洗浄、庭木の剪定や屋上防水まで。専門会社を何社も探す手間なく、建物まわりの全11業種をワンストップでお任せいただけます。各業種の詳細は、カードをクリックしてご覧ください。
+                客室清掃から高所のロープ作業、エアコン・ダクトの分解洗浄、庭木の剪定や屋上防水まで。11の専門業務を<strong style={{ color: "#fff" }}>5つの分野</strong>に整理しました。専門会社を何社も探す手間なく、建物まわりをまるごとワンストップでお任せいただけます。各分野の詳細は、カードをクリックしてご覧ください。
               </p>
             </div>
           </div>
@@ -74,7 +75,7 @@ export default function Home() {
               <Link key={s.slug} href={`/services/${s.slug}`} className="svc-card tilt" data-cursor="hover">
                 <div className="svc-kanji">{s.kanji}</div>
                 <div className="tilt-layer">
-                  <div className="svc-ix">{pad(i + 1)} / 11</div>
+                  <div className="svc-ix">{pad(i + 1)} / {pad(SERVICES.length)}</div>
                   <div className="svc-name">{s.name}</div>
                   <div className="svc-en">{s.en}</div>
                   <div className="svc-desc">{s.tagline}</div>
@@ -155,17 +156,17 @@ export default function Home() {
           </div>
           <div className="works-grid">
             <div className="work-col">
-              <Link href="/services/mado" className="work-card big reveal" data-cursor="hover">
+              <Link href="/services/gaiso" className="work-card big reveal" data-cursor="hover">
                 <img src="/images/work-rope-2.jpg" alt="ロープ作業による窓清掃" loading="lazy" />
                 <div className="meta"><div className="label">窓清掃 / ロープ作業<small>Rope Access · Kyoto</small></div><span className="badge">高所</span></div>
               </Link>
             </div>
             <div className="work-col">
-              <Link href="/services/sentei" className="work-card wide reveal" data-cursor="hover">
+              <Link href="/services/gaikou" className="work-card wide reveal" data-cursor="hover">
                 <img src="/images/work-pruning-1.jpg" alt="庭木の剪定" loading="lazy" />
                 <div className="meta"><div className="label">庭木の剪定<small>Tree Pruning · Otsu</small></div><span className="badge">外構</span></div>
               </Link>
-              <Link href="/services/aircon" className="work-card wide reveal" data-cursor="hover">
+              <Link href="/services/setsubi" className="work-card wide reveal" data-cursor="hover">
                 <img src="/images/work-aircon.jpg" alt="エアコン分解洗浄" loading="lazy" />
                 <div className="meta"><div className="label">エアコン分解洗浄<small>A/C Deep Clean</small></div><span className="badge">設備</span></div>
               </Link>

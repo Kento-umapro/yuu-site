@@ -2,15 +2,16 @@
    株式会社 悠 — 共通デザインシステム / 3D（you.css 由来）
    ============================================================ */
 :root{
-  --paper:#f4f1ea; --paper-2:#eae5d8; --paper-3:#ddd6c4;
-  --ink:#10171e; --ink-2:#28333d; --muted:#6b7480;
-  --hair:#d6d1c0; --hair-strong:#b8b29c;
-  --teal:#1f8a96; --teal-deep:#14606a; --teal-soft:#9ed1d6; --teal-bright:#2bbac6;
-  --green:#4fb05e; --green-deep:#2e8b3f; --green-soft:#b4dcba; --green-bright:#5cc46c;
+  --paper:#eef1f0; --paper-2:#e3e7e6; --paper-3:#d3d8d7;
+  --ink:#080c11; --ink-2:#1f2933; --muted:#67727d;
+  --hair:#d4d9d6; --hair-strong:#b4bcb8;
+  --teal:#13aab4; --teal-deep:#0b6f79; --teal-soft:#a6e6ea; --teal-bright:#22d6dc;
+  --green:#2fc06a; --green-deep:#1c9a48; --green-soft:#a8e8bd; --green-bright:#41e288;
   --accent:var(--teal); --accent-deep:var(--teal-deep); --accent-soft:var(--teal-soft);
-  --grad:linear-gradient(120deg,#2bbac6 0%,#3fb098 45%,#5cc46c 100%);
-  --grad-deep:linear-gradient(120deg,#14606a 0%,#1f8a96 45%,#2e8b3f 100%);
-  --grad-bright:linear-gradient(120deg,#3fd6e2 0%,#5fd8b0 50%,#7ee08e 100%);
+  --glow:0 0 44px rgba(34,214,220,.28);
+  --grad:linear-gradient(120deg,#22d6dc 0%,#2bd0a0 50%,#41e288 100%);
+  --grad-deep:linear-gradient(120deg,#0b6f79 0%,#13aab4 45%,#1c9a48 100%);
+  --grad-bright:linear-gradient(120deg,#3ff0f4 0%,#4fefc8 50%,#82f2a4 100%);
   --serif:"Shippori Mincho B1","Noto Serif JP","Hiragino Mincho ProN","YuMincho",serif;
   --body:"Noto Serif JP","Hiragino Mincho ProN","YuMincho",serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
@@ -199,10 +200,23 @@ footer{ background:var(--paper-3); padding:78px 40px 30px; border-top:1px solid 
 /* HERO */
 .hero{
   position:relative; min-height:100vh; overflow:hidden;
-  background:radial-gradient(circle at 70% 20%, #18313a 0%, #0c1318 55%, #080d11 100%);
+  background:#05080b;
   color:var(--paper); display:flex; align-items:center;
   padding:120px 40px 60px; perspective:1100px;
 }
+/* シネマ写真の背景 + 読みやすさのためのスクリム */
+.hero-photo{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:url('/images/hero-1.png') center 30%/cover no-repeat;
+  transform:scale(1.06); animation:heroZoom 22s ease-in-out infinite alternate;
+}
+.hero-photo::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, rgba(5,8,11,.95) 0%, rgba(5,8,11,.82) 38%, rgba(5,8,11,.42) 72%, rgba(5,8,11,.7) 100%),
+    linear-gradient(0deg, rgba(5,8,11,.96) 0%, rgba(5,8,11,.2) 42%, rgba(5,8,11,.55) 100%);
+}
+@keyframes heroZoom{ from{transform:scale(1.06);} to{transform:scale(1.14);} }
 .hero-floor{
   position:absolute; left:50%; bottom:-6%; width:230%; height:80vh;
   transform:translateX(-50%) rotateX(74deg); transform-origin:bottom center;
@@ -222,6 +236,7 @@ footer{ background:var(--paper-3); padding:78px 40px 30px; border-top:1px solid 
   position:absolute; right:-2vw; top:46%; transform:translateY(-50%);
   font-family:var(--serif); font-weight:600; font-size:clamp(360px,52vw,860px);
   line-height:1; color:#0e1a20; pointer-events:none; user-select:none; z-index:1;
+  opacity:.5; mix-blend-mode:soft-light;
   text-shadow:
     2px 2px 0 #112730, 4px 4px 0 #123039, 6px 6px 0 #133842,
     8px 8px 0 #14414c, 10px 10px 0 #144a56, 12px 12px 0 #154f5c,
@@ -277,7 +292,7 @@ h1.hero-title .l2{
 }
 .svc-card::after{ content:""; position:absolute; inset:0; background:var(--grad); opacity:0; transition:opacity .5s; mix-blend-mode:overlay; pointer-events:none; }
 .svc-card:hover::after{ opacity:.12; }
-.svc-card:hover{ border-color:rgba(110,210,219,.4); box-shadow:0 40px 80px -34px rgba(0,0,0,.9), 0 0 0 1px rgba(110,210,219,.25); }
+.svc-card:hover{ border-color:rgba(34,214,220,.55); box-shadow:0 40px 80px -34px rgba(0,0,0,.9), 0 0 0 1px rgba(34,214,220,.32), 0 0 56px -8px rgba(34,214,220,.3); }
 .svc-kanji{
   position:absolute; right:14px; top:-10px; font-family:var(--serif); font-weight:600;
   font-size:150px; line-height:1; color:#0e171d;
@@ -525,3 +540,38 @@ form.inquiry{ display:grid; gap:26px; }
 .rel-card .rm{ font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--accent-deep); margin-top:14px; position:relative; text-transform:uppercase; display:inline-flex; gap:7px; }
 .rel-card:hover .rm .arr{ transform:translateX(5px); }
 .rel-card .rm .arr{ transition:transform .3s; }
+
+/* ── 詳細：客室清掃のシネマ背景 ── */
+.detail-hero-photo{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:url('/images/hero-2.png') center 32%/cover no-repeat;
+}
+.detail-hero-photo::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, rgba(5,8,11,.95) 0%, rgba(5,8,11,.8) 42%, rgba(5,8,11,.45) 100%),
+    linear-gradient(0deg, rgba(5,8,11,.9) 0%, rgba(5,8,11,.2) 45%, rgba(5,8,11,.5) 100%);
+}
+
+/* ── 詳細：実績バンド（主力ページ） ── */
+.stat-band{ background:var(--ink); color:var(--paper); padding:0; }
+.stat-band .wrap{ display:grid; grid-template-columns:repeat(4,1fr); }
+.stat-cell{ padding:40px 30px; border-right:1px solid rgba(255,255,255,.1); border-bottom:1px solid rgba(255,255,255,.1); }
+.stat-cell:last-child{ border-right:none; }
+.stat-cell .k{ font-family:var(--mono); font-size:10px; letter-spacing:.3em; color:var(--teal-soft); text-transform:uppercase; }
+.stat-cell .v{ font-family:var(--serif); font-weight:600; font-size:clamp(26px,2.4vw,36px); margin-top:12px; background:var(--grad-bright); -webkit-background-clip:text; background-clip:text; color:transparent; }
+@media (max-width:760px){ .stat-band .wrap{ grid-template-columns:1fr 1fr; } }
+
+/* ── 詳細：対応内容（covers） ── */
+.covers{ background:var(--paper); }
+.cover-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+@media (max-width:820px){ .cover-grid{ grid-template-columns:1fr; } }
+.cover-card{
+  position:relative; padding:32px 28px 30px; background:var(--paper-2);
+  border:1px solid var(--hair-strong); border-top:2px solid transparent; overflow:hidden;
+  transition:transform .45s cubic-bezier(.2,.7,.1,1),border-color .4s,box-shadow .4s,background .4s;
+}
+.cover-card:hover{ transform:translateY(-5px); border-top-color:var(--teal); background:var(--paper); box-shadow:0 26px 48px -28px rgba(11,111,121,.5); }
+.cover-card .cn{ font-family:var(--mono); font-size:11px; letter-spacing:.3em; color:var(--teal-deep); }
+.cover-card .ct{ font-family:var(--serif); font-size:19px; color:var(--ink); letter-spacing:.03em; margin-top:14px; }
+.cover-card .cb{ font-family:var(--serif); font-size:14px; line-height:1.9; color:var(--ink-2); margin-top:12px; }

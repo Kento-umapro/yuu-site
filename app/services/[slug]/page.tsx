@@ -48,6 +48,7 @@ export default async function ServiceDetail(
     <>
       {/* DETAIL HERO */}
       <header className="detail-hero">
+        {s.slug === "kyakushitsu" && <div className="detail-hero-photo" />}
         <div className="floor" />
         <div className="glow" />
         <div className="big-kanji" id="dGlyph">{s.kanji}</div>
@@ -59,7 +60,7 @@ export default async function ServiceDetail(
           </nav>
           <div className="reveal">
             <span className="cat-pill">{s.cat}</span>
-            <span className="detail-num">{pad(n)} / 11</span>
+            <span className="detail-num">{pad(n)} / {pad(SERVICES.length)}</span>
           </div>
           <h1 className="detail-title reveal">{stripParen(s.name)}</h1>
           <div className="detail-en reveal">{s.en}</div>
@@ -70,6 +71,20 @@ export default async function ServiceDetail(
           </div>
         </div>
       </header>
+
+      {/* STATS（主力ページ） */}
+      {s.stats && (
+        <section className="stat-band">
+          <div className="wrap">
+            {s.stats.map((st, i) => (
+              <div className="stat-cell" key={i}>
+                <div className="k">{st.k}</div>
+                <div className="v">{st.v}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* OVERVIEW */}
       <section className="overview">
@@ -84,12 +99,33 @@ export default async function ServiceDetail(
         </div>
       </section>
 
+      {/* COVERS（対応内容 / 含まれる業務） */}
+      {s.covers && (
+        <section className="covers">
+          <div className="wrap">
+            <div className="section-head">
+              <div className="section-num reveal">対応内容 / SCOPE</div>
+              <div><h2 className="section-title reveal">{s.covers.heading}</h2></div>
+            </div>
+            <div className="cover-grid reveal-stagger">
+              {s.covers.items.map((c, i) => (
+                <div className="cover-card" key={i}>
+                  <div className="cn">{pad(i + 1)}</div>
+                  <div className="ct">{c.t}</div>
+                  <div className="cb">{c.b}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FEATURES */}
       <section className="feat">
         <div className="wrap">
           <div className="section-head">
             <div className="section-num reveal">特徴 / FEATURES</div>
-            <div><h2 className="section-title reveal">悠が選ばれる、<em>3つの理由。</em></h2></div>
+            <div><h2 className="section-title reveal">悠が選ばれる、<em>理由。</em></h2></div>
           </div>
           <div className="feat-grid reveal-stagger">
             {s.features.map((f, i) => (
@@ -142,7 +178,7 @@ export default async function ServiceDetail(
               return (
                 <Link key={r.slug} href={`/services/${r.slug}`} className="rel-card" data-cursor="hover">
                   <div className="rk">{r.kanji}</div>
-                  <div className="rix">{pad(rn)} / 11</div>
+                  <div className="rix">{pad(rn)} / {pad(SERVICES.length)}</div>
                   <div className="rn">{r.name}</div>
                   <div className="rm">詳しく <span className="arr">→</span></div>
                 </Link>
