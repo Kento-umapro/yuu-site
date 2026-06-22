@@ -76,7 +76,7 @@ export default function Home() {
             <div>
               <h2 className="section-title reveal">建物の困りごとは、<br /><em>ぜんぶ、悠へ。</em></h2>
               <p className="section-lede reveal">
-                客室清掃から高所のロープ作業、エアコン・ダクトの分解洗浄、庭木の剪定や屋上防水まで。11の専門業務を<strong style={{ color: "#fff" }}>5つの分野</strong>に整理しました。専門会社を何社も探す手間なく、建物まわりをまるごとワンストップでお任せいただけます。各分野の詳細は、カードをクリックしてご覧ください。
+                客室清掃から高所のロープ作業、エアコン・ダクトの分解洗浄、庭木の剪定や屋上防水まで。11の専門業務を<strong style={{ color: "var(--teal-deep)", fontWeight: 700 }}>5つの分野</strong>に整理しました。専門会社を何社も探す手間なく、建物まわりをまるごとワンストップでお任せいただけます。各分野の詳細は、カードをクリックしてご覧ください。
               </p>
             </div>
           </div>
