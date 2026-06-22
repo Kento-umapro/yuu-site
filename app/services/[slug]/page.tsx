@@ -8,6 +8,15 @@ import { COMPANY } from "@/lib/company";
 const pad = (n: number) => String(n).padStart(2, "0");
 const stripParen = (s: string) => s.replace(/（.*）/, "");
 
+// 各業種ページのヒーロー背景写真（AI生成・シネマティック）
+const HERO_IMG: Record<string, string> = {
+  kyakushitsu: "/images/hero-2.png",
+  kannai: "/images/svc-kannai.png",
+  gaiso: "/images/svc-gaiso.png",
+  setsubi: "/images/svc-setsubi.png",
+  gaikou: "/images/svc-gaikou.png",
+};
+
 const telStyle = {
   fontFamily: "var(--mono)",
   fontSize: "10px",
@@ -48,7 +57,10 @@ export default async function ServiceDetail(
     <>
       {/* DETAIL HERO */}
       <header className="detail-hero">
-        {s.slug === "kyakushitsu" && <div className="detail-hero-photo" />}
+        <div
+          className="detail-hero-photo"
+          style={{ backgroundImage: `url(${HERO_IMG[s.slug] ?? "/images/hero-2.png"})` }}
+        />
         <div className="floor" />
         <div className="glow" />
         <div className="big-kanji" id="dGlyph">{s.kanji}</div>
