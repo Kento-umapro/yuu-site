@@ -9,7 +9,6 @@ export default function Footer() {
         <div className="footer-brand">
           <div className="flogo">
             <img src="/images/logo-yuu.png" alt="株式会社 悠" />
-            <span className="big">悠</span>
           </div>
           <p>{COMPANY.description}</p>
         </div>
@@ -28,7 +27,7 @@ export default function Footer() {
           <ul>
             <li><a href={`tel:${COMPANY.tel}`}>{COMPANY.tel}</a></li>
             <li><a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></li>
-            <li><Link href="/#contact">LINE / {COMPANY.lineId}</Link></li>
+            <li><Link href="/contact">LINE / {COMPANY.lineId}</Link></li>
           </ul>
         </div>
         <div className="footer-col">

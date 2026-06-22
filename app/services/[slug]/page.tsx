@@ -8,7 +8,13 @@ import { COMPANY } from "@/lib/company";
 const pad = (n: number) => String(n).padStart(2, "0");
 const stripParen = (s: string) => s.replace(/（.*）/, "");
 
-// 各業種ページのヒーロー背景写真（AI生成・シネマティック）
+const telStyle = {
+  fontFamily: "var(--mono)",
+  fontSize: "10px",
+  letterSpacing: ".25em",
+} as const;
+
+// 各業種ページのヒーロー背景写真
 const HERO_IMG: Record<string, string> = {
   kyakushitsu: "/images/hero-2.png",
   kannai: "/images/svc-kannai.png",
@@ -16,12 +22,6 @@ const HERO_IMG: Record<string, string> = {
   setsubi: "/images/svc-setsubi.png",
   gaikou: "/images/svc-gaikou.png",
 };
-
-const telStyle = {
-  fontFamily: "var(--mono)",
-  fontSize: "10px",
-  letterSpacing: ".25em",
-} as const;
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -56,30 +56,26 @@ export default async function ServiceDetail(
   return (
     <>
       {/* DETAIL HERO */}
-      <header className="detail-hero">
-        <div
-          className="detail-hero-photo"
-          style={{ backgroundImage: `url(${HERO_IMG[s.slug] ?? "/images/hero-2.png"})` }}
-        />
-        <div className="floor" />
-        <div className="glow" />
-        <div className="big-kanji" id="dGlyph">{s.kanji}</div>
-        <div className="detail-hero-inner">
-          <nav className="breadcrumb reveal">
-            <Link href="/">悠 TOP</Link><span>/</span>
-            <Link href="/#services">業務内容</Link><span>/</span>
-            <span style={{ color: "var(--teal-soft)" }}>{s.name}</span>
+      <header className="page-hero with-photo">
+        <div className="page-hero-bg">
+          <img src={HERO_IMG[s.slug] ?? "/images/hero-2.png"} alt={`${s.name}の現場`} />
+        </div>
+        <div className="wrap page-hero-inner">
+          <nav className="breadcrumb">
+            <Link href="/">HOME</Link><span className="sep">/</span>
+            <Link href="/services">SERVICE</Link><span className="sep">/</span>
+            <span style={{ color: "var(--accent)" }}>{stripParen(s.name)}</span>
           </nav>
-          <div className="reveal">
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 4 }}>
             <span className="cat-pill">{s.cat}</span>
             <span className="detail-num">{pad(n)} / {pad(SERVICES.length)}</span>
           </div>
-          <h1 className="detail-title reveal">{stripParen(s.name)}</h1>
-          <div className="detail-en reveal">{s.en}</div>
-          <p className="detail-tagline reveal">{s.tagline}</p>
-          <div className="hero-cta reveal">
-            <Link href="/#contact" className="btn-primary" data-cursor="hover"><span>この業種を相談する</span><Arrow /></Link>
-            <a href={`tel:${COMPANY.tel}`} className="btn-ghost on-light" data-cursor="hover"><span>{COMPANY.tel}</span><span style={telStyle}>TEL</span></a>
+          <h1 className="reveal">{stripParen(s.name)}</h1>
+          <div className="en reveal" style={{ marginTop: 12 }}>{s.en}</div>
+          <p className="lede reveal">{s.tagline}</p>
+          <div className="hero-cta reveal" style={{ marginTop: 34 }}>
+            <Link href="/contact" className="btn-primary"><span>この業種を相談する</span><Arrow /></Link>
+            <a href={`tel:${COMPANY.tel}`} className="btn-ghost"><span>{COMPANY.tel}</span><span style={telStyle}>TEL</span></a>
           </div>
         </div>
       </header>
@@ -99,7 +95,7 @@ export default async function ServiceDetail(
       )}
 
       {/* OVERVIEW */}
-      <section className="overview">
+      <section className="section">
         <div className="wrap">
           <div className="ov-grid">
             <div className="ov-side reveal"><div className="lbl">Overview / 概要</div><div className="big-num">{pad(n)}</div></div>
@@ -113,7 +109,7 @@ export default async function ServiceDetail(
 
       {/* COVERS（対応内容 / 含まれる業務） */}
       {s.covers && (
-        <section className="covers">
+        <section className="section alt">
           <div className="wrap">
             <div className="section-head">
               <div className="section-num reveal">対応内容 / SCOPE</div>
@@ -133,7 +129,7 @@ export default async function ServiceDetail(
       )}
 
       {/* FEATURES */}
-      <section className="feat">
+      <section className="section">
         <div className="wrap">
           <div className="section-head">
             <div className="section-num reveal">特徴 / FEATURES</div>
@@ -152,7 +148,7 @@ export default async function ServiceDetail(
       </section>
 
       {/* GALLERY */}
-      <section className="gallery">
+      <section className="section alt">
         <div className="wrap">
           <div className="section-head">
             <div className="section-num reveal">施工の様子 / WORKS</div>
@@ -169,7 +165,7 @@ export default async function ServiceDetail(
             </div>
           ) : (
             <div className="gal-grid cols-1 reveal">
-              <div className="gal-card ph-stripe gal-ph">
+              <div className="gal-card gal-ph">
                 <div className="ph-label">{s.name} の現場写真<br />（ここに施工写真が入ります）</div>
               </div>
             </div>
@@ -178,7 +174,7 @@ export default async function ServiceDetail(
       </section>
 
       {/* RELATED */}
-      <section className="related">
+      <section className="section">
         <div className="wrap">
           <div className="section-head">
             <div className="section-num reveal">ほかの業種 / MORE</div>
@@ -188,7 +184,7 @@ export default async function ServiceDetail(
             {related.map((r) => {
               const rn = SERVICES.findIndex((x) => x.slug === r.slug) + 1;
               return (
-                <Link key={r.slug} href={`/services/${r.slug}`} className="rel-card" data-cursor="hover">
+                <Link key={r.slug} href={`/services/${r.slug}`} className="rel-card">
                   <div className="rk">{r.kanji}</div>
                   <div className="rix">{pad(rn)} / {pad(SERVICES.length)}</div>
                   <div className="rn">{r.name}</div>
@@ -201,20 +197,19 @@ export default async function ServiceDetail(
       </section>
 
       {/* MINI CTA */}
-      <section className="cta-banner" style={{ padding: "110px 40px" }}>
-        <div className="cta-inner" style={{ alignItems: "end" }}>
+      <section className="cta-banner">
+        <div className="bg-glyph">悠</div>
+        <div className="wrap cta-inner">
           <div>
-            <div className="eyebrow reveal" style={{ color: "var(--paper-3)" }}>FREE ESTIMATE</div>
-            <h2 className="reveal" style={{ fontFamily: "var(--serif)", fontWeight: 400, fontSize: "clamp(36px,4.4vw,72px)", lineHeight: 1.2, marginTop: 28, letterSpacing: ".02em" }}>
-              まずは、<span style={{ background: "linear-gradient(120deg,#6dd2db,#8ad895)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>無料で見積もり。</span>
-            </h2>
-            <p className="reveal" style={{ fontFamily: "var(--serif)", fontSize: 16, lineHeight: 2, color: "var(--paper-3)", marginTop: 30, maxWidth: "46ch" }}>
+            <div className="eyebrow cta-eyebrow reveal">FREE ESTIMATE</div>
+            <h2 className="cta-title reveal">まずは、<em>無料で見積もり。</em></h2>
+            <p className="cta-lede reveal">
               状況をお聞かせいただければ、その場で概算をお出しします。見積もりは無料、しつこい営業は一切ありません。
             </p>
           </div>
           <div className="cta-stack reveal">
-            <Link href="/#contact" className="btn-primary" data-cursor="hover"><span>フォームで依頼</span><Arrow /></Link>
-            <a href={`tel:${COMPANY.tel}`} className="btn-ghost on-light" data-cursor="hover"><span>{COMPANY.tel}</span><span style={telStyle}>TEL</span></a>
+            <Link href="/contact" className="btn-primary"><span>フォームで依頼</span><Arrow /></Link>
+            <a href={`tel:${COMPANY.tel}`} className="btn-ghost"><span>{COMPANY.tel}</span><span style={telStyle}>TEL</span></a>
           </div>
         </div>
       </section>

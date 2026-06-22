@@ -1,19 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const LINKS = [
-  { href: "/#services", label: "業務内容" },
-  { href: "/#about", label: "理念" },
-  { href: "/#strengths", label: "強み" },
-  { href: "/#works", label: "事例" },
-  { href: "/#area", label: "対応エリア" },
+const TABS = [
+  { href: "/", jp: "ホーム", en: "HOME" },
+  { href: "/services", jp: "業務内容", en: "SERVICE" },
+  { href: "/works", jp: "施工事例", en: "WORKS" },
+  { href: "/about", jp: "会社概要", en: "ABOUT" },
+  { href: "/contact", jp: "お問い合わせ", en: "CONTACT" },
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -22,25 +27,34 @@ export default function Nav() {
     };
   }, [open]);
 
+  // ルート変更でメニューを閉じる
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
-    <nav className={`top on-dark${open ? " menu-open" : ""}`} id="nav">
-      <Link href="/" className="brand" data-cursor="hover" onClick={close}>
+    <>
+    <nav className={`nav${open ? " menu-open" : ""}`} id="nav">
+      <Link href="/" className="brand" onClick={close}>
         <img className="brand-logo" src="/images/logo-yuu.png" alt="株式会社 悠 ロゴ" />
         <span className="brand-text">
           <span className="brand-name">株式会社 悠</span>
-          <span className="brand-en">YOU&nbsp;·&nbsp;Total&nbsp;Building&nbsp;Care</span>
+          <span className="brand-en">YOU&nbsp;·&nbsp;TOTAL&nbsp;BUILDING&nbsp;CARE</span>
         </span>
       </Link>
 
-      <ul>
-        {LINKS.map((l) => (
-          <li key={l.href}>
-            <Link href={l.href} data-cursor="hover">{l.label}</Link>
+      <ul className="nav-tabs">
+        {TABS.map((t) => (
+          <li key={t.href}>
+            <Link href={t.href} className={`nav-tab${isActive(t.href) ? " active" : ""}`}>
+              <span className="jp">{t.jp}</span>
+              <span className="en">{t.en}</span>
+            </Link>
           </li>
         ))}
       </ul>
 
-      <Link href="/#contact" className="nav-cta" data-cursor="hover">
+      <Link href="/contact" className="nav-cta">
         <span>無料見積もり</span>
         <span className="arr">→</span>
       </Link>
@@ -55,19 +69,37 @@ export default function Nav() {
         <span />
         <span />
       </button>
-
-      <div className={`nav-mobile${open ? " open" : ""}`}>
-        <ul>
-          {LINKS.map((l) => (
-            <li key={l.href}>
-              <Link href={l.href} onClick={close}>{l.label}</Link>
-            </li>
-          ))}
-          <li>
-            <Link href="/#contact" className="nav-mobile-cta" onClick={close}>無料見積もり →</Link>
-          </li>
-        </ul>
-      </div>
     </nav>
+
+    {/* スクリム＋ドロワーは nav の外（backdrop-filter の影響を受けないよう） */}
+    <div
+      className={`nav-scrim${open ? " open" : ""}`}
+      onClick={close}
+      aria-hidden="true"
+    />
+
+    <div className={`nav-mobile${open ? " open" : ""}`}>
+      <div className="nav-mobile-label">MENU</div>
+      <ul>
+        {TABS.map((t, i) => (
+          <li key={t.href}>
+            <Link
+              href={t.href}
+              className={isActive(t.href) ? "active" : undefined}
+              onClick={close}
+            >
+              <span className="num">{String(i + 1).padStart(2, "0")}</span>
+              {t.jp}
+              <span className="en">{t.en}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <Link href="/contact" className="nav-mobile-cta" onClick={close}>
+        <span>無料見積もり</span>
+        <span className="arr">→</span>
+      </Link>
+    </div>
+    </>
   );
 }
