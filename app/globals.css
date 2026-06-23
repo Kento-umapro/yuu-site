@@ -745,7 +745,7 @@ section { position: relative; }
 }
 .founder-photo {
   aspect-ratio: 3/4;
-  background: var(--ink) url(/images/founder-onishi.jpg) center 42%/cover;
+  background: var(--ink) url(/images/founder-onishi-v2.jpg) center 42%/cover;
   position: relative;
 }
 .founder-corner {
@@ -1436,6 +1436,13 @@ footer { background: var(--ink); color: #cfd1d4; padding: 80px 0 36px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 10px; }
   .info-table .row { grid-template-columns: 1fr; gap: 6px; }
+  /* スマホでは長い和文を自然に折り返す（keep-allだと折れずに見切れるため） */
+  .hero-title, .section-title, .cta-title, .page-hero h1,
+  .intro-statement, .manifesto-body, .strength-title, .step-title,
+  .svc-name, .contact-side h3 {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
   .submit-row { flex-direction: column; align-items: stretch; }
   .hero-fact { padding: 16px 20px 16px 0; margin-right: 20px; }
 }
