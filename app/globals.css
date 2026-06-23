@@ -738,7 +738,7 @@ section { position: relative; }
 }
 .founder-photo {
   aspect-ratio: 3/4;
-  background: var(--ink) url(/images/founder-onishi.jpg) center 32%/cover;
+  background: var(--ink) url(/images/founder-onishi.jpg) center 42%/cover;
   position: relative;
 }
 .founder-corner {
