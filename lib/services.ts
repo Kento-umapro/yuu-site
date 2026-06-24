@@ -204,11 +204,171 @@ export function getService(slug: string): Service | undefined {
   return SERVICES.find((s) => s.slug === slug);
 }
 
-// 英語タグライン（トップ／サービス一覧で使用）。詳細ページの本文は順次追加。
+// 英語タグライン（トップ／サービス一覧で使用）。
 export const TAGLINE_EN: Record<string, string> = {
   kyakushitsu: "Spotless rooms, ready before every check-in — our flagship service.",
   kannai: "Common areas, deep cleaning, carpets and floors — the whole building refreshed.",
   gaiso: "From rope-access high windows to rooftop waterproofing.",
   setsubi: "A/C, plumbing, electrical and kitchen ducts — handled through one window.",
   gaikou: "Greenery care that shapes the first impression of your building.",
+};
+
+// カテゴリの英語表記
+export const CAT_EN: Record<string, string> = {
+  "清掃": "Cleaning",
+  "高所作業": "Height Work",
+  "設備": "Facilities",
+  "外構": "Exterior",
+};
+
+// 業種詳細ページの英語コンテンツ（slug/kanji/en/photos.src は元データを流用）
+export interface ServiceEn {
+  tagline: string;
+  intro: string[];
+  features: Feature[];
+  covers?: { heading: string; items: Cover[] };
+  stats?: Stat[];
+  target: string;
+  photos?: { label: string; badge: string }[];
+}
+export const SERVICE_EN: Record<string, ServiceEn> = {
+  kyakushitsu: {
+    tagline: "Spotless rooms, ready by check-in. This is YOU's flagship service.",
+    intro: [
+      "From business hotels to international city hotels, ryokan and private lodging, guest-room cleaning is the service YOU puts the most into. Bed-making, bath and toilet cleaning, amenity restocking, waste removal and a full set of checks — every room is finished room by room, with no gaps, to a set procedure.",
+      "What we value above all is time. Being ready by check-in is the minimum condition of hotel cleaning, and the lifeline of room occupancy. In busy seasons we add partner staff so we can raise the room count without dropping quality.",
+      "Because procedures are standardized by room type, the finish stays consistent even when the person on duty changes. An inspection system guarantees quality, and we coordinate smoothly with the front desk and room management. We can also take over your existing operation exactly as it is.",
+      "“We're short on staff,” “We're worried about our current cleaner's quality or deadlines” — these are exactly the issues to bring to us first. Our founder, with ten years on site, will propose a cleaning setup that fits your property.",
+    ],
+    features: [
+      { t: "On-time, always", b: "The agreed room count, at the agreed quality, by the agreed time — always finished before check-in." },
+      { t: "Standardized procedures", b: "Cleaning steps unified by room type. The finish never wavers, even when staff change." },
+      { t: "Inspection", b: "A post-cleaning check system guarantees quality and catches anything missed in the next step." },
+      { t: "Peak-season staffing", b: "Holidays and tourist seasons — we add partner staff so occupancy never drops." },
+      { t: "On-site coordination", b: "Close coordination with front desk and room management, flexible to same-day booking changes." },
+      { t: "Smooth handover", b: "We take over your existing setup and procedures as-is, for a seamless switch." },
+    ],
+    covers: {
+      heading: "What guest-room cleaning covers",
+      items: [
+        { t: "Bed-making", b: "From linen changes to crisp, wrinkle-free bed-making, finished to hotel standards." },
+        { t: "Bath & toilet", b: "We remove water stains, hair and odor around water areas for a thoroughly clean feel." },
+        { t: "In-room cleaning", b: "Floors, furniture, mirrors, windows and fixtures wiped down and tidied, room by room." },
+        { t: "Amenity restocking", b: "Towels, fixtures and consumables restocked and set, with par-level management." },
+        { t: "Waste collection & sorting", b: "Room waste collected, sorted and taken to the designated point in one go." },
+        { t: "Lost items & defect checks", b: "We check for lost property and equipment faults, with a first report." },
+      ],
+    },
+    stats: [
+      { k: "MAX / DAY", v: "120 rooms" },
+      { k: "CHECK-IN", v: "Always on time" },
+      { k: "QUALITY", v: "Set procedure + inspection" },
+      { k: "SUPPORT", v: "Peak-season staffing" },
+    ],
+    target: "Business hotels / city hotels / ryokan / private & budget lodging",
+    photos: [
+      { label: "Twin room", badge: "AFTER" },
+      { label: "Japanese-modern room", badge: "AFTER" },
+    ],
+  },
+  kannai: {
+    tagline: "Common areas, special cleaning, carpets and floors — the whole building's cleanliness, together.",
+    intro: [
+      "Beyond the rooms — the lobby, corridors, elevator halls and shared restrooms guests see first, special cleaning that removes built-up grime, and carpet and floor maintenance. Leave the cleaning around your building's interior to us in one package.",
+      "We match cleaning agents, tools and machines to each material, lifting the “first impression” and cleanliness of the whole building. We propose a cleaning plan at the frequency you want — daily, weekly or monthly.",
+    ],
+    features: [
+      { t: "Protect the first impression", b: "Lobbies and common areas are the building's face. We keep them ready to welcome guests at all times." },
+      { t: "Material-specific cleaning", b: "Stone, glass, metal, carpet, flooring — each cleaned the right way, without damage." },
+      { t: "Reset built-up grime", b: "Water stains, mold and yellowing left by routine cleaning are thoroughly removed by special cleaning." },
+    ],
+    covers: {
+      heading: "Work included in this field",
+      items: [
+        { t: "Public areas", b: "Lobbies, corridors, elevator halls, shared restrooms and smoking rooms, kept in order every day." },
+        { t: "Room special cleaning", b: "Water stains, mold and built-up grime removed to the core, including post-move-out restoration." },
+        { t: "Carpet cleaning", b: "Deep fiber dirt rinsed and extracted with dedicated machines; stain removal too." },
+        { t: "Floor & wax", b: "Stripping, washing and re-waxing restore the shine and extend the life of the flooring." },
+      ],
+    },
+    target: "Hotels / office buildings / commercial facilities / condominium common areas",
+    photos: [
+      { label: "Unit-bath floor (before special cleaning)", badge: "BEFORE" },
+      { label: "Unit-bath floor (after special cleaning)", badge: "AFTER" },
+    ],
+  },
+  gaiso: {
+    tagline: "High windows reachable on a single rope, all the way to rooftop waterproofing.",
+    intro: [
+      "For high windows on buildings where scaffolding or gondolas can't be set up, we polish each pane by rope access (suspended work). From low-rise window cleaning to upper-floor windows on building facades — wiped streak-free, so even the view through the glass is clear.",
+      "On rooftops and balconies, fallen leaves and silt clog drains and cause leaks. Regular cleaning keeps drainage clear, and if the waterproof layer shows wear, we handle waterproofing work such as membrane coating in one flow — protecting the building from rainwater.",
+      "In height work, safety is the premise of everything. Equipment checks, secured anchor points, double rigging without exception. Experienced operators carry out the work to reliable procedures.",
+    ],
+    features: [
+      { t: "Rope access capable", b: "Even on facades and high floors where scaffolding won't fit, we polish the glass by rope." },
+      { t: "Rigorous safety", b: "Equipment checks, anchor points and double rigging — safety first, always." },
+      { t: "Through to waterproofing", b: "We don't stop at rooftop cleaning; worn waterproofing is handled with membrane coating and more." },
+    ],
+    covers: {
+      heading: "Work included in this field",
+      items: [
+        { t: "Window cleaning (rope OK)", b: "From low-rise to high facade windows — every pane polished by rope access." },
+        { t: "Rooftop & waterproofing", b: "Clearing clogged drains to prevent leaks, through to urethane membrane waterproofing." },
+      ],
+    },
+    target: "Office buildings / hotels / commercial facilities / condominium facades & rooftops",
+    photos: [
+      { label: "Rope access on a building facade", badge: "HEIGHT" },
+      { label: "Upper-floor window cleaning", badge: "ROPE" },
+    ],
+  },
+  setsubi: {
+    tagline: "A/C, plumbing, electrical and kitchen-duct troubles — handled together.",
+    intro: [
+      "Weak or smelly air-conditioning, dripping taps, blocked toilets, lights that won't come on, and grease in kitchen ducts that becomes a fire risk — the facility troubles that inevitably appear in any building in use can all be brought to YOU's single window.",
+      "Because we're on site daily for cleaning, we can spot faults early and respond quickly. Air-conditioners and kitchen ducts are disassembled and high-pressure washed inside, restoring efficiency, hygiene and safety. When large-scale work is needed, we coordinate with trusted specialist contractors.",
+    ],
+    features: [
+      { t: "Disassembled deep clean", b: "A/C and duct fans and heat exchangers are disassembled and washed to the core by high pressure." },
+      { t: "Early detection, first response", b: "Being on site daily for cleaning, we catch faults early and act fast." },
+      { t: "Lower fire risk", b: "Removing grease inside kitchen ducts lowers the risk of duct fires." },
+    ],
+    covers: {
+      heading: "Work included in this field",
+      items: [
+        { t: "A/C disassembled cleaning", b: "Ceiling-recessed, wall-mounted and commercial units disassembled and washed — better smell and cooling." },
+        { t: "Facilities (taps, toilets, electrical)", b: "First response to everyday faults: leaks, blockages, lighting and more." },
+        { t: "Kitchen-duct cleaning", b: "Grease removed from hoods, duct interiors and exhaust fans to lower fire risk." },
+      ],
+    },
+    target: "Hotels / offices / shops / restaurants / homes",
+    photos: [
+      { label: "Disassembling a ceiling-recessed fan", badge: "FACILITY" },
+      { label: "Grease inside an exhaust fan", badge: "BEFORE" },
+    ],
+  },
+  gaikou: {
+    tagline: "Greenery care that sets the expression of your building.",
+    intro: [
+      "We prune the planting and hedges at entrances and courtyards. By trimming overgrown branches and securing airflow and sunlight, we keep the trees healthy while tightening up the look around the building.",
+      "We also handle pruning of taller trees using stepladders and ladders, and take care of collecting, hauling and disposing of the cut branches and leaves afterward. We keep the exterior — which shapes the building's first impression — clean and beautiful.",
+    ],
+    features: [
+      { t: "Shape the scenery", b: "We keep the planting that shapes the building's first impression neat and beautiful." },
+      { t: "Keep trees healthy", b: "Pruning that considers airflow and light, for trees that grow healthy and long." },
+      { t: "Through to disposal", b: "Collection, hauling and disposal of cut branches and leaves, all handled together." },
+    ],
+    covers: {
+      heading: "Work included in this field",
+      items: [
+        { t: "Tree pruning", b: "From tall trees to hedges, shaped beautifully to the season and species." },
+        { t: "Planting & exterior care", b: "Entrance and courtyard planting management, weeding and other exterior work." },
+      ],
+    },
+    target: "Building & hotel planting / shop exteriors / courtyards & hedges",
+    photos: [
+      { label: "Pruning planting in front of a building", badge: "EXTERIOR" },
+      { label: "Tending high branches", badge: "PRUNING" },
+    ],
+  },
 };

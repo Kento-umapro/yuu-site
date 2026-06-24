@@ -63,24 +63,21 @@ export default function Nav() {
             </Link>
           </li>
         ))}
-        <li className="nav-lang">
-          {isEn ? (
-            <Link href={toJa} className="nav-tab" lang="ja" hrefLang="ja">
-              <span className="jp">日本語</span>
-              <span className="en">JA</span>
-            </Link>
-          ) : (
-            <Link href={toEn} className="nav-tab" lang="en" hrefLang="en">
-              <span className="jp">English</span>
-              <span className="en">EN</span>
-            </Link>
-          )}
-        </li>
       </ul>
 
       <Link href={L("/contact")} className="nav-cta">
         <span>{isEn ? "Free Quote" : "無料見積もり"}</span>
         <span className="arr">→</span>
+      </Link>
+
+      <Link
+        href={isEn ? toJa : toEn}
+        className="nav-lang-btn"
+        lang={isEn ? "ja" : "en"}
+        hrefLang={isEn ? "ja" : "en"}
+        aria-label={isEn ? "日本語に切り替え" : "Switch to English"}
+      >
+        {isEn ? "日本語" : "EN"}
       </Link>
 
       <button
@@ -118,18 +115,6 @@ export default function Nav() {
             </Link>
           </li>
         ))}
-        <li>
-          <Link
-            href={isEn ? toJa : toEn}
-            onClick={close}
-            lang={isEn ? "ja" : "en"}
-            hrefLang={isEn ? "ja" : "en"}
-          >
-            <span className="num">—</span>
-            {isEn ? "日本語" : "English"}
-            <span className="en">{isEn ? "JA" : "EN"}</span>
-          </Link>
-        </li>
       </ul>
       <Link href={L("/contact")} className="nav-mobile-cta" onClick={close}>
         <span>{isEn ? "Free Quote" : "無料見積もり"}</span>
