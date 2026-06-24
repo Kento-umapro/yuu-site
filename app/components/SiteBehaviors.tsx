@@ -35,5 +35,26 @@ export default function SiteBehaviors() {
     return () => io.disconnect();
   }, [pathname]);
 
+  // 代表写真：タッチ端末は「画面内に入ったら満面の笑み」に切替（PCはCSSの:hover）
+  useEffect(() => {
+    if (window.matchMedia("(hover: hover)").matches) return;
+    const targets = Array.from(
+      document.querySelectorAll<HTMLElement>(".page-hero.with-photo, .founder-photo"),
+    );
+    if (!targets.length) return;
+    const io = new IntersectionObserver(
+      (es) =>
+        es.forEach((e) =>
+          (e.target as HTMLElement).classList.toggle(
+            "is-smiling",
+            e.intersectionRatio >= 0.5,
+          ),
+        ),
+      { threshold: [0, 0.5, 1] },
+    );
+    targets.forEach((t) => io.observe(t));
+    return () => io.disconnect();
+  }, [pathname]);
+
   return null;
 }

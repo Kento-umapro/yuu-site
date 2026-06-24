@@ -31,6 +31,7 @@ export default function About() {
       <header className="page-hero with-photo">
         <div className="page-hero-bg">
           <img src="/images/founder-onishi-v2.jpg" alt="代表取締役 大西 悠佑" style={{ objectPosition: "center 60%" }} />
+          <img className="sp-smile" src="/images/founder-onishi-smile.jpg" alt="" aria-hidden="true" style={{ objectPosition: "center 60%" }} />
         </div>
         <div className="wrap page-hero-inner">
           <nav className="breadcrumb">
