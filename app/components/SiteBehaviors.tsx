@@ -56,5 +56,35 @@ export default function SiteBehaviors() {
     return () => io.disconnect();
   }, [pathname]);
 
+  // ヒーローCTA：マグネット追従（PCのみ・reduced-motionは無効）
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const btns = Array.from(
+      document.querySelectorAll<HTMLElement>(".hero-cta .btn-primary, .hero-cta .btn-ghost"),
+    );
+    if (!btns.length) return;
+    const cleanups: Array<() => void> = [];
+    btns.forEach((b) => {
+      const onMove = (e: PointerEvent) => {
+        const r = b.getBoundingClientRect();
+        const mx = e.clientX - (r.left + r.width / 2);
+        const my = e.clientY - (r.top + r.height / 2);
+        b.style.transform = `translate(${mx * 0.22}px, ${my * 0.4}px)`;
+      };
+      const onLeave = () => {
+        b.style.transform = "";
+      };
+      b.addEventListener("pointermove", onMove);
+      b.addEventListener("pointerleave", onLeave);
+      cleanups.push(() => {
+        b.removeEventListener("pointermove", onMove);
+        b.removeEventListener("pointerleave", onLeave);
+        b.style.transform = "";
+      });
+    });
+    return () => cleanups.forEach((fn) => fn());
+  }, [pathname]);
+
   return null;
 }

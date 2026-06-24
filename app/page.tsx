@@ -21,6 +21,14 @@ export default function Home() {
             <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
         </div>
+        <svg className="shader-defs" aria-hidden="true" focusable="false">
+          <filter id="liquid" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.016" numOctaves={2} seed={7} result="noise">
+              <animate attributeName="baseFrequency" dur="9s" values="0.012 0.016;0.018 0.024;0.012 0.016" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale={6} xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </svg>
         <div className="wrap hero-inner">
           <div className="eyebrow hero-eyebrow reveal">TOTAL BUILDING CARE / SHIGA · KYOTO</div>
           <h1 className="hero-title reveal">
