@@ -16,6 +16,12 @@ export default function SiteBehaviors() {
     return () => removeEventListener("scroll", onScroll);
   }, []);
 
+  // ロケールに応じて <html lang> を切替（/en は英語）
+  useEffect(() => {
+    const isEn = pathname === "/en" || pathname.startsWith("/en/");
+    document.documentElement.lang = isEn ? "en" : "ja";
+  }, [pathname]);
+
   // ページごと：reveal を IntersectionObserver で発火
   useEffect(() => {
     window.scrollTo(0, 0);

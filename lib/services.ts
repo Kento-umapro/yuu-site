@@ -203,3 +203,12 @@ export const SERVICES: Service[] = [
 export function getService(slug: string): Service | undefined {
   return SERVICES.find((s) => s.slug === slug);
 }
+
+// 英語タグライン（トップ／サービス一覧で使用）。詳細ページの本文は順次追加。
+export const TAGLINE_EN: Record<string, string> = {
+  kyakushitsu: "Spotless rooms, ready before every check-in — our flagship service.",
+  kannai: "Common areas, deep cleaning, carpets and floors — the whole building refreshed.",
+  gaiso: "From rope-access high windows to rooftop waterproofing.",
+  setsubi: "A/C, plumbing, electrical and kitchen ducts — handled through one window.",
+  gaikou: "Greenery care that shapes the first impression of your building.",
+};

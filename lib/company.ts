@@ -13,6 +13,12 @@ export const COMPANY = {
   tagline: "TOTAL BUILDING CARE / SHIGA · KYOTO",
   description:
     "株式会社 悠 — ホテル清掃を起点に、窓・カーペット・エアコン・庭木・設備・防水まで。建物まわりの全11業種を一次受けで請け負う、滋賀発の総合ビルメンテナンス。",
+  descriptionEn:
+    "YOU Co., Ltd. — total building maintenance based in Shiga, Japan. From hotel guest-room cleaning to windows, carpets, air-conditioning, landscaping, facilities and waterproofing — all 11 trades around your building, taken on as a primary contractor.",
+  cityEn: "Otsu, Shiga",
+  addressEn: "1-40-23 Kinugawa, Otsu City, Shiga",
+  hoursEn: "9:00 – 17:00 / Open year-round",
+  areasEn: "Kyoto · Otsu · Kusatsu",
 } as const;
 
 export const SITE_URL = "https://you-bm.jp"; // 本番ドメイン未定（仮）

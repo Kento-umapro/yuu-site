@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const TABS = [
-  { href: "/", jp: "ホーム", en: "HOME" },
-  { href: "/services", jp: "業務内容", en: "SERVICE" },
-  { href: "/works", jp: "施工事例", en: "WORKS" },
-  { href: "/about", jp: "会社概要", en: "ABOUT" },
-  { href: "/contact", jp: "お問い合わせ", en: "CONTACT" },
+  { href: "/", jp: "ホーム", enLabel: "Home", en: "HOME" },
+  { href: "/services", jp: "業務内容", enLabel: "Services", en: "SERVICE" },
+  { href: "/works", jp: "施工事例", enLabel: "Works", en: "WORKS" },
+  { href: "/about", jp: "会社概要", enLabel: "About", en: "ABOUT" },
+  { href: "/contact", jp: "お問い合わせ", enLabel: "Contact", en: "CONTACT" },
 ];
 
 export default function Nav() {
@@ -17,8 +17,19 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  // ロケール判定（/en 以下は英語）
+  const isEn = pathname === "/en" || pathname.startsWith("/en/");
+  // ロケール付きリンク
+  const L = (href: string) => (isEn ? "/en" + (href === "/" ? "" : href) : href);
+  // 言語切替先（同じページの反対ロケール）
+  const toJa = (isEn ? pathname.replace(/^\/en/, "") : pathname) || "/";
+  const toEn = isEn ? pathname : "/en" + (pathname === "/" ? "" : pathname);
+  const label = (t: (typeof TABS)[number]) => (isEn ? t.enLabel : t.jp);
+
+  const isActive = (href: string) => {
+    const h = L(href);
+    return h === "/" || h === "/en" ? pathname === h : pathname.startsWith(h);
+  };
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -35,7 +46,7 @@ export default function Nav() {
   return (
     <>
     <nav className={`nav${open ? " menu-open" : ""}`} id="nav">
-      <Link href="/" className="brand" onClick={close}>
+      <Link href={L("/")} className="brand" onClick={close}>
         <img className="brand-logo" src="/images/logo-yuu.png" alt="株式会社 悠 ロゴ" />
         <span className="brand-text">
           <span className="brand-name">株式会社 悠</span>
@@ -46,22 +57,35 @@ export default function Nav() {
       <ul className="nav-tabs">
         {TABS.map((t) => (
           <li key={t.href}>
-            <Link href={t.href} className={`nav-tab${isActive(t.href) ? " active" : ""}`}>
-              <span className="jp">{t.jp}</span>
+            <Link href={L(t.href)} className={`nav-tab${isActive(t.href) ? " active" : ""}`}>
+              <span className="jp">{label(t)}</span>
               <span className="en">{t.en}</span>
             </Link>
           </li>
         ))}
+        <li className="nav-lang">
+          {isEn ? (
+            <Link href={toJa} className="nav-tab" lang="ja" hrefLang="ja">
+              <span className="jp">日本語</span>
+              <span className="en">JA</span>
+            </Link>
+          ) : (
+            <Link href={toEn} className="nav-tab" lang="en" hrefLang="en">
+              <span className="jp">English</span>
+              <span className="en">EN</span>
+            </Link>
+          )}
+        </li>
       </ul>
 
-      <Link href="/contact" className="nav-cta">
-        <span>無料見積もり</span>
+      <Link href={L("/contact")} className="nav-cta">
+        <span>{isEn ? "Free Quote" : "無料見積もり"}</span>
         <span className="arr">→</span>
       </Link>
 
       <button
         className="nav-burger"
-        aria-label="メニューを開く"
+        aria-label={isEn ? "Open menu" : "メニューを開く"}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >
@@ -84,19 +108,31 @@ export default function Nav() {
         {TABS.map((t, i) => (
           <li key={t.href}>
             <Link
-              href={t.href}
+              href={L(t.href)}
               className={isActive(t.href) ? "active" : undefined}
               onClick={close}
             >
               <span className="num">{String(i + 1).padStart(2, "0")}</span>
-              {t.jp}
+              {label(t)}
               <span className="en">{t.en}</span>
             </Link>
           </li>
         ))}
+        <li>
+          <Link
+            href={isEn ? toJa : toEn}
+            onClick={close}
+            lang={isEn ? "ja" : "en"}
+            hrefLang={isEn ? "ja" : "en"}
+          >
+            <span className="num">—</span>
+            {isEn ? "日本語" : "English"}
+            <span className="en">{isEn ? "JA" : "EN"}</span>
+          </Link>
+        </li>
       </ul>
-      <Link href="/contact" className="nav-mobile-cta" onClick={close}>
-        <span>無料見積もり</span>
+      <Link href={L("/contact")} className="nav-mobile-cta" onClick={close}>
+        <span>{isEn ? "Free Quote" : "無料見積もり"}</span>
         <span className="arr">→</span>
       </Link>
     </div>

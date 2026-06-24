@@ -2,6 +2,14 @@ import Link from "next/link";
 import Arrow from "./components/Arrow";
 import { SERVICES } from "@/lib/services";
 import { COMPANY } from "@/lib/company";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    languages: { ja: "/", en: "/en", "x-default": "/" },
+  },
+};
 
 const telStyle = {
   fontFamily: "var(--mono)",
